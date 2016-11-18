@@ -1,20 +1,18 @@
-package ca.ualberta.cs.lonelytwitter;
+package ca.ualberta.cs.lonelytweets;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 
-public class NormalLonelyTweet implements Serializable {
-
+/**
+ * Created by insanekillah on 2016-11-17.
+ */
+public abstract class LonelyTweet implements Serializable {
 	private static final long serialVersionUID = 1L;
 	protected Date tweetDate;
 	protected String tweetBody;
 
-	public NormalLonelyTweet() {
-	}
-
-	public NormalLonelyTweet(String text, Date date) {
-		this.tweetDate = date;
+	public LonelyTweet(String text) {
 		this.tweetBody = text;
 	}
 
@@ -45,14 +43,7 @@ public class NormalLonelyTweet implements Serializable {
 		tweetBody = (String) in.readObject();
 	}
 
-	public boolean isValid() {
-		if (tweetBody.trim().length() == 0
-				|| tweetBody.trim().length() > 10) {
-			return false;
-		}
-
-		return true;
-	}
+	public abstract boolean isValid();
 
 	@Override
 	public String toString() {
